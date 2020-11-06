@@ -7,7 +7,7 @@ class App extends React.Component{
   id = 3;
   constructor(props){
     super(props);
-    this.stste = {
+    this.state = {
       input : '',
       todos : [
         {id : 0, text : '리액트 소개', checked : false },
@@ -35,7 +35,7 @@ class App extends React.Component{
     });
   };
 
-  handleKeyPress = () =>{
+  handleKeyPress = (e) =>{
     if(e.key === 'Enter'){
       this.handleCreate();
     }
