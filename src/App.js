@@ -17,44 +17,74 @@ class App extends React.Component{
     }
   }
 
-  handleChange = (e) =>{
+  handleToggle = (id) => {
+    const { todos } = this.state;
+
+    const index = todos.findIndex(todo => todo.id === id);
+    const selected = todos[index];
+
+    const nextTodos = [...todos]; // 배열을 복사
+    nextTodos[index] = {
+      ...selected,
+      checked : !selected.checked
+    };
+
+    this.setState({
+      todos : nextTodos
+    });
+  };
+
+  handleRemove = (id) => {
+    const { todos } = this.state;
+    this.setState({
+      todos : todos.filter(todo => todo.id !== id)
+    });
+  }
+
+  handleChange = (e) => {
     this.setState({
       input : e.target.value
     })
   };
 
-  handleCreate = () =>{
+  handleCreate = () => {
     const { input, todos } = this.state;
     this.setState({
       input : '',
       todos : todos.concat({
-        id : this.id++,
+        id : this.stste.id++,
         text : input,
         checked : false
       })
     });
   };
 
-  handleKeyPress = (e) =>{
+  handleKeyPress = (e) => {
     if(e.key === 'Enter'){
       this.handleCreate();
     }
   }
 
   render(){
+    console.log(this.state.input);
     const { input } = this.state;
     const {
       handleChange,
       handleCreate,
-      handleKeyPress
+      handleKeyPress,
+      handleToggle,
+      handleRemove
     } = this;
 
     return (
     <TodoListTemplate form = {<Form
-    value = {this.state.input} onKeyPress = {this.handleKeyPress}
-    onChange = {this.handleChange} onCreate = {this.handleCreate}  
+    value = {input} onKeyPress = {handleKeyPress}
+    onChange = {handleChange} onCreate = {handleCreate}  
     />} 
-    children = {<TodoItemList/>}/>
+    children = {<TodoItemList todos = {this.state.todos} 
+    onToggle={handleToggle}
+    onRemove={handleRemove}
+    />}/>
     );
   };
 }
