@@ -52,7 +52,7 @@ class App extends React.Component{
     this.setState({
       input : '',
       todos : todos.concat({
-        id : this.stste.id++,
+        id : this.id++,
         text : input,
         checked : false
       })
@@ -79,12 +79,9 @@ class App extends React.Component{
     return (
     <TodoListTemplate form = {<Form
     value = {input} onKeyPress = {handleKeyPress}
-    onChange = {handleChange} onCreate = {handleCreate}  
-    />} 
-    children = {<TodoItemList todos = {this.state.todos} 
+    onChange = {handleChange} onCreate = {handleCreate}/>} children = {<TodoItemList todos = {this.state.todos} 
     onToggle={handleToggle}
-    onRemove={handleRemove}
-    />}/>
+    onRemove={handleRemove}/>}/>
     );
   };
 }
