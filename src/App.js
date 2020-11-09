@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import TodoListTemplate from './components/TodoListTemplate';
+import Palette from './components/Palette';
 import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
+
+const colors = ['#343a40', '#f03e3e', '#12b886', '#228ae6'];
 
 class App extends React.Component{
   id = 3;
@@ -13,7 +16,8 @@ class App extends React.Component{
         {id : 0, text : '리액트 소개', checked : false },
         {id : 1, text : '리액트 소개', checked : true },
         {id : 2, text : '리액트 소개', checked : false },
-      ]
+      ],
+      color : '#343a40' 
     }
   }
 
@@ -77,11 +81,15 @@ class App extends React.Component{
     } = this;
 
     return (
-    <TodoListTemplate form = {<Form
-    value = {input} onKeyPress = {handleKeyPress}
-    onChange = {handleChange} onCreate = {handleCreate}/>} children = {<TodoItemList todos = {this.state.todos} 
+    <TodoListTemplate 
+    form = {<Form
+    color = {color} value = {input} onKeyPress = {handleKeyPress}
+    onChange = {handleChange} onCreate = {handleCreate}/>}
+    pallet = { <Palette colors={colors} selected = { color } onSelect={handleSelectColor}/>} 
+    children = {<TodoItemList todos = {this.state.todos} 
     onToggle={handleToggle}
-    onRemove={handleRemove}/>}/>
+    onRemove={handleRemove}/>}
+    />
     );
   };
 }
