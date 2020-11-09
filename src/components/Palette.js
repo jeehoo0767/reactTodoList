@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './palette.css';
 
 const Color = ({color, active, onClick}) => {
     return (

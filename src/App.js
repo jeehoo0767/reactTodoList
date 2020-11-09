@@ -4,6 +4,7 @@ import Palette from './components/Palette';
 import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
 
+
 const colors = ['#343a40', '#f03e3e', '#12b886', '#228ae6'];
 
 class App extends React.Component{
@@ -71,7 +72,7 @@ class App extends React.Component{
 
   render(){
     console.log(this.state.input);
-    const { input } = this.state;
+    const { input, color} = this.state;
     const {
       handleChange,
       handleCreate,
@@ -85,7 +86,7 @@ class App extends React.Component{
     form = {<Form
     color = {color} value = {input} onKeyPress = {handleKeyPress}
     onChange = {handleChange} onCreate = {handleCreate}/>}
-    pallet = { <Palette colors={colors} selected = { color } onSelect={handleSelectColor}/>} 
+    pallet = { <Palette colors={colors} selected = { color } />} 
     children = {<TodoItemList todos = {this.state.todos} 
     onToggle={handleToggle}
     onRemove={handleRemove}/>}
