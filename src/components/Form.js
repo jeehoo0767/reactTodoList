@@ -5,7 +5,7 @@ const Form = ({color, value, onChange, onCreate, onKeyPress}) => {
     return (
     <div className="form">
         <input type="text" value={value} onChange={onChange} 
-        onKeyPress={onKeyPress}/>
+        onKeyPress={onKeyPress} style={{color}}/>
         <div className="create-button" onClick={onCreate}>
             추가
         </div>
